@@ -1,10 +1,13 @@
-[![appcenterbanner](https://user-images.githubusercontent.com/31293287/32969262-3cc5d48a-cb99-11e7-91bf-fa57c67a371c.png)](http://microsoft.github.io/code-push/)
-
-#### [Sign up With App Center](https://appcenter.ms/signup?utm_source=CodePush&utm_medium=Azure) to use CodePush
-
 # Capacitor Plugin for CodePush
+This version is a fork of Mapiacompany's Capacitor Codepush, updated to work with newer Capacitor dependencies.
 
-This plugin provides client-side integration for the [CodePush service](https://microsoft.github.io/code-push/), allowing you to easily add a dynamic update experience to your Capacitor app(s).
+Install it using
+```
+npm i cap-codepush
+```
+
+⬇ OLD README
+---
 
 <!-- Capacitor Catalog -->
 
@@ -31,11 +34,11 @@ In order to ensure that your end users always have a functioning version of your
 
 Tested with these environment
 ```
-"@capacitor-community/http": "^1.0.0",
-"@capacitor/core": "^3.0.0",
-"@capacitor/device": "^1.0.0",
-"@capacitor/dialog": "^1.0.0",
-"@capacitor/filesystem": "^1.0.0"
+ "@capacitor-community/http": "^2.0.0-0",
+ "@capacitor/core": "4.1.0",
+ "@capacitor/device": "^4.0.1",
+ "@capacitor/dialog": "^4.0.1",
+ "@capacitor/filesystem": "^4.1.0"
 ```
 
 This Capacitor plugin does not work with Capacitor v2 or older versions.
@@ -46,7 +49,7 @@ Once you've followed the general-purpose ["getting started"](https://docs.micros
 
 ```shell
 npm i @capacitor-community/http@next @capacitor/device @capacitor/dialog @capacitor/filesystem -D
-npm i https://github.com/mapiacompany/capacitor-codepush -D
+npm i cap-codepush -D
 npx cap sync
 ```
 
