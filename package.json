@@ -1,6 +1,6 @@
 {
   "name": "cap-codepush",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Updated CodePush Plugin for Capacitor and Angular 14+",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -12,8 +12,7 @@
     "swiftlint": "node-swiftlint",
     "build": "npm run clean && tsc && rollup -c rollup.config.js",
     "clean": "rimraf ./dist",
-    "watch": "tsc --watch",
-    "prepublishOnly": "npm run build"
+    "watch": "tsc --watch"
   },
   "keywords": [
     "capacitor",
@@ -78,11 +77,6 @@
     },
     "ios": {
       "src": "ios"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   }
 }
