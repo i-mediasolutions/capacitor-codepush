@@ -1,6 +1,6 @@
 {
   "name": "cap-codepush",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Updated CodePush Plugin for Capacitor and Angular 14+",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -25,7 +25,6 @@
   "author": "Gianluigi Trontini",
   "license": "MIT",
   "devDependencies": {
-    "@capacitor-community/http": "^2.0.0-0",
     "@capacitor/cli": "4.1.0",
     "@capacitor/device": "^4.0.1",
     "@capacitor/dialog": "^4.0.1",
@@ -65,7 +64,6 @@
     "code-push": "^4.0.2"
   },
   "peerDependencies": {
-    "@capacitor-community/http": "^2.0.0-0",
     "@capacitor/core": "^4.1.0",
     "@capacitor/device": "^4.0.1",
     "@capacitor/dialog": "^4.0.1",
