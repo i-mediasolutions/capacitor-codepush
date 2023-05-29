@@ -4,20 +4,18 @@ export default {
   input: "dist/esm/index.js",
   output: {
     file: "dist/plugin.js",
-    format: "esm",
+    format: "iife",
     name: "capacitorPlugin", // TODO: change this
     globals: {
       "@capacitor/core": "capacitorExports",
-      "@capacitor/dialog": "capacitorDialog",
     },
     sourcemap: true,
-    inlineDynamicImports: true,
   },
   plugins: [
     nodeResolve({
       // allowlist of dependencies to bundle in
       // @see https://github.com/rollup/plugins/tree/master/packages/node-resolve#resolveonly
-      resolveOnly: ["lodash", "@capacitor/dialog"],
+      resolveOnly: ["lodash"],
     }),
   ],
 };
