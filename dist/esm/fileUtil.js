@@ -17,8 +17,8 @@ export class FileUtil {
             try {
                 const statResult = yield Filesystem.stat({ directory, path });
                 // directory for Android, NSFileTypeDirectory for iOS
-                // @ts-ignore
-                return statResult.type === "directory" || statResult.type === "NSFileTypeDirectory";
+                return (statResult.type === "directory" ||
+                    statResult.type === "NSFileTypeDirectory");
             }
             catch (error) {
                 return false;
@@ -33,8 +33,7 @@ export class FileUtil {
             try {
                 const statResult = yield Filesystem.stat({ directory, path });
                 // file for Android, NSFileTypeRegular for iOS
-                // @ts-ignore
-                return statResult.type === "file" || statResult.type === "NSFileTypeRegular";
+                return (statResult.type === "file" || statResult.type === "NSFileTypeRegular");
             }
             catch (error) {
                 return false;
@@ -82,11 +81,10 @@ export class FileUtil {
                 const { files } = yield Filesystem.readdir(sourceDir);
                 for (let i = 0; i < files.length; i++) {
                     const file = files[i];
-                    // @ts-ignore
                     if (ignoreList.includes(file))
                         continue;
-                    const sourcePath = sourceDir.path + "/" + file;
-                    const destPath = destinationDir.path + "/" + file;
+                    const sourcePath = sourceDir.path + "/" + file.name;
+                    const destPath = destinationDir.path + "/" + file.name;
                     const source = Object.assign(Object.assign({}, sourceDir), { path: sourcePath });
                     const destination = Object.assign(Object.assign({}, destinationDir), { path: destPath });
                     if (yield FileUtil.directoryExists(source.directory, source.path)) { // is directory
