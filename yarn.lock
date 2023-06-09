@@ -1941,7 +1941,7 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha512-RpAVKQA5T63xEj6/giIbUEtZwJ4UFIc3ZtvEkiaUERylqe8xb5IvqcgOurZLahv93CLKfxcw5YI+DZcUBRyLXA==
 
-code-push@^4.1.3:
+code-push@4.1.3:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/code-push/-/code-push-4.1.3.tgz#19b17c816e5126d0684b5da60dfd61f744aa256b"
   integrity sha512-41lYevIV3DU127foa6NVPVBiGdkgqM5oQgIEF6vcX37lDLCGkyWvlKDWJSI/1y5lMt2ClNeKf6ydy8KpNP3KSQ==
