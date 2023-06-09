@@ -51,5 +51,5 @@ export interface NativeCodePushPlugin {
     unzip(options: NativeUnzipOptions): Promise<void>;
     addListener(eventName: "codePushStatus", listenerFunc: (info: any) => void): void;
 }
-export declare const CodePush: NativeCodePushPlugin;
+export declare const CodePush: any;
 export {};
