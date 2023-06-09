@@ -21,7 +21,7 @@ android {
     namespace "com.microsoft.capacitor.codepush"
     compileSdkVersion project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 33
     defaultConfig {
-        minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 24
+        minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 22
         targetSdkVersion project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 33
         versionCode 1
         versionName "1.0"
@@ -36,58 +36,25 @@ android {
     lintOptions {
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 }
 
 repositories {
-    flatDir {
-        dirs 'libs'
-    }
     google()
-    jcenter()
     mavenCentral()
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
-    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-    implementation 'com.nimbusds:nimbus-jose-jwt:5.1'
     testImplementation "junit:junit:$junitVersion"
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
+    implementation 'com.google.zxing:core:3.3.0'
 }
-
-task capCreateAssetManifest {
-    def inAssetsDir = rootProject.file("app/src/main/assets")
-
-    def outAssetsDir = inAssetsDir
-    def outFile = new File(outAssetsDir, "cdvasset.manifest")
-
-    doLast {
-        def contents = new HashMap()
-        def sizes = new HashMap()
-        contents[""] = inAssetsDir.list()
-        def tree = fileTree(dir: inAssetsDir)
-        tree.visit { fileDetails ->
-            if (fileDetails.isDirectory()) {
-                contents[fileDetails.relativePath.toString()] = fileDetails.file.list()
-            } else {
-                sizes[fileDetails.relativePath.toString()] = fileDetails.file.length()
-            }
-        }
-
-        outAssetsDir.mkdirs()
-        outFile.withObjectOutputStream { oos ->
-            oos.writeObject(contents)
-            oos.writeObject(sizes)
-        }
-    }
-}
-
-android.buildTypes.each {
-    // to prevent incorrect long value restoration from strings.xml we need to wrap it with double quotes
-    // https://github.com/Microsoft/cordova-plugin-code-push/issues/264
-    it.resValue "string", "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
-}
-
-preBuild.dependsOn capCreateAssetManifest

@@ -1,6 +1,6 @@
 {
   "name": "cap-codepush",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Updated CodePush Plugin for Capacitor and Angular 16. Working with Capacitor 5.",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
