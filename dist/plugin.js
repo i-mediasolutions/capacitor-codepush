@@ -249,6 +249,11 @@ var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, devi
     }
 
     // Type definitions for Apache Cordova CodePush plugin.
+    // Project: https://github.com/Microsoft/cordova-plugin-code-push
+    //
+    // Copyright (c) Microsoft Corporation
+    // All rights reserved.
+    // Licensed under the MIT license.
     const CodePush$1 = /*#__PURE__*/ core.registerPlugin("CodePush");
 
     var __awaiter$4 = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -456,21 +461,21 @@ var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, devi
          */
         getHttpMethodName(verb) {
             switch (verb) {
-                case 0 /* GET */:
+                case acquisitionSdk.Http.Verb.GET:
                     return "GET";
-                case 4 /* DELETE */:
+                case acquisitionSdk.Http.Verb.DELETE:
                     return "DELETE";
-                case 1 /* HEAD */:
+                case acquisitionSdk.Http.Verb.HEAD:
                     return "HEAD";
-                case 8 /* PATCH */:
+                case acquisitionSdk.Http.Verb.PATCH:
                     return "PATCH";
-                case 2 /* POST */:
+                case acquisitionSdk.Http.Verb.POST:
                     return "POST";
-                case 3 /* PUT */:
+                case acquisitionSdk.Http.Verb.PUT:
                     return "PUT";
-                case 5 /* TRACE */:
-                case 6 /* OPTIONS */:
-                case 7 /* CONNECT */:
+                case acquisitionSdk.Http.Verb.TRACE:
+                case acquisitionSdk.Http.Verb.OPTIONS:
+                case acquisitionSdk.Http.Verb.CONNECT:
                 default:
                     return null;
             }
@@ -496,13 +501,14 @@ var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, devi
         static getAcquisitionManager(userDeploymentKey, contentType) {
             return __awaiter$3(this, void 0, void 0, function* () {
                 const resolveManager = () => {
-                    if (userDeploymentKey !== Sdk.DefaultConfiguration.deploymentKey || contentType) {
+                    if (userDeploymentKey !== Sdk.DefaultConfiguration.deploymentKey ||
+                        contentType) {
                         var customConfiguration = {
                             deploymentKey: userDeploymentKey || Sdk.DefaultConfiguration.deploymentKey,
                             serverUrl: Sdk.DefaultConfiguration.serverUrl,
                             ignoreAppVersion: Sdk.DefaultConfiguration.ignoreAppVersion,
                             appVersion: Sdk.DefaultConfiguration.appVersion,
-                            clientUniqueId: Sdk.DefaultConfiguration.clientUniqueId
+                            clientUniqueId: Sdk.DefaultConfiguration.clientUniqueId,
                         };
                         var requester = new HttpRequester(contentType);
                         var customAcquisitionManager = new acquisitionSdk.AcquisitionManager(requester, customConfiguration);
@@ -544,7 +550,7 @@ var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, devi
                         serverUrl,
                         ignoreAppVersion: false,
                         appVersion,
-                        clientUniqueId: device$1.uuid
+                        clientUniqueId: device$1.identifier,
                     };
                     if (deploymentKey) {
                         Sdk.DefaultAcquisitionManager = new acquisitionSdk.AcquisitionManager(new HttpRequester(), Sdk.DefaultConfiguration);
@@ -577,7 +583,8 @@ var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, devi
                     acquisitionManager.reportStatusDownload(pkg, callback);
                 }
                 catch (e) {
-                    callback && callback(new Error("An error occured while reporting the download status. " + e));
+                    callback &&
+                        callback(new Error("An error occured while reporting the download status. " + e));
                 }
             });
         }
@@ -1642,8 +1649,6 @@ var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, devi
 
     exports.CodePush = CodePush$1;
     exports.codePush = codePush;
-
-    Object.defineProperty(exports, '__esModule', { value: true });
 
     return exports;
 
