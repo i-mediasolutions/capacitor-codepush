@@ -1,12 +1,17 @@
-import {
-  AcquisitionManager,
-  Configuration,
-} from "code-push/script/acquisition-sdk";
+import { AcquisitionManager } from "code-push/script/acquisition-sdk";
 import { Callback } from "./callbackUtil";
 import { HttpRequester } from "./httpRequester";
 import { NativeAppInfo } from "./nativeAppInfo";
 import { IPackage } from "./package";
 import { Device } from "@capacitor/device";
+
+export interface Configuration {
+  appVersion: string;
+  clientUniqueId: string;
+  deploymentKey: string;
+  serverUrl: string;
+  ignoreAppVersion?: boolean;
+}
 
 /**
  * Interacts with the CodePush Acquisition SDK.

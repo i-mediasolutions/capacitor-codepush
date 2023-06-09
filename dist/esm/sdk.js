@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { AcquisitionManager, } from "code-push/script/acquisition-sdk";
+import { AcquisitionManager } from "code-push/script/acquisition-sdk";
 import { HttpRequester } from "./httpRequester";
 import { NativeAppInfo } from "./nativeAppInfo";
 import { Device } from "@capacitor/device";

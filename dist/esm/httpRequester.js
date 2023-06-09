@@ -1,4 +1,3 @@
-import { Http } from "code-push/script/acquisition-sdk";
 import { CapacitorHttp as NativeHttp } from "@capacitor/core";
 /**
  * XMLHttpRequest-based implementation of Http.Requester.
@@ -33,7 +32,7 @@ export class HttpRequester {
         const headers = {
             "X-CodePush-Plugin-Name": "cordova-plugin-code-push",
             "X-CodePush-Plugin-Version": "1.11.13",
-            "X-CodePush-SDK-Version": "3.1.5"
+            "X-CodePush-SDK-Version": "3.1.5",
         };
         if (this.contentType) {
             headers["Content-Type"] = this.contentType;
@@ -41,7 +40,7 @@ export class HttpRequester {
         const options = {
             method: methodName,
             url,
-            headers
+            headers,
         };
         if (methodName === "GET") {
             options.params = requestBody;
@@ -52,7 +51,10 @@ export class HttpRequester {
         NativeHttp.request(options).then((nativeRes) => {
             if (typeof nativeRes.data === "object")
                 nativeRes.data = JSON.stringify(nativeRes.data);
-            var response = { statusCode: nativeRes.status, body: nativeRes.data };
+            var response = {
+                statusCode: nativeRes.status,
+                body: nativeRes.data,
+            };
             requestCallback && requestCallback(null, response);
         });
     }
@@ -62,21 +64,21 @@ export class HttpRequester {
      */
     getHttpMethodName(verb) {
         switch (verb) {
-            case Http.Verb.GET:
+            case 0 /* Http.Verb.GET */:
                 return "GET";
-            case Http.Verb.DELETE:
+            case 4 /* Http.Verb.DELETE */:
                 return "DELETE";
-            case Http.Verb.HEAD:
+            case 1 /* Http.Verb.HEAD */:
                 return "HEAD";
-            case Http.Verb.PATCH:
+            case 8 /* Http.Verb.PATCH */:
                 return "PATCH";
-            case Http.Verb.POST:
+            case 2 /* Http.Verb.POST */:
                 return "POST";
-            case Http.Verb.PUT:
+            case 3 /* Http.Verb.PUT */:
                 return "PUT";
-            case Http.Verb.TRACE:
-            case Http.Verb.OPTIONS:
-            case Http.Verb.CONNECT:
+            case 5 /* Http.Verb.TRACE */:
+            case 6 /* Http.Verb.OPTIONS */:
+            case 7 /* Http.Verb.CONNECT */:
             default:
                 return null;
         }

@@ -1,6 +1,13 @@
 import { AcquisitionManager } from "code-push/script/acquisition-sdk";
 import { Callback } from "./callbackUtil";
 import { IPackage } from "./package";
+export interface Configuration {
+    appVersion: string;
+    clientUniqueId: string;
+    deploymentKey: string;
+    serverUrl: string;
+    ignoreAppVersion?: boolean;
+}
 /**
  * Interacts with the CodePush Acquisition SDK.
  */
